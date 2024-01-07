@@ -45,17 +45,13 @@ class user_favourite(user_favourite_artwork):
             self.connection.commit()
 
     def removeArtworkFromFavorite(self, ArtworkID = None, UserID = None):
-        try:
-            if not self.check_artworkID_in_artwork(ArtworkID):
-                raise ArtWorkNotFoundException("INVALID ARTWORK ID ")
-            if not self.check_userID_in_user(UserID):
-                raise UserNotFoundException("INVALID USER ID ")
+         try:
             cur = self.connection.cursor()
             if ArtworkID:
-                cur.execute("DELETE FROM USER_FAVOURITE_ARTWORK WHERE ArtworkID = %s", (ArtworkID,))
+                cur.execute("delete  from user_favorite_artwork where ArtworkID = %s", (ArtworkID,))
             if UserID:
-                cur.execute("DELETE FROM USER_FAVOURITE_ARTWORK WHERE UserID = %s", (UserID,))
-            print("\n\n\t\t\tARTWORK DELETED FROM USER FAVOURITE ARTWORK ")
+                cur.execute("delete  from user_favorite_artwork where UserID = %s", (UserID,))
+            print("ARTWORK DELETED  ")
         except Exception as e:
             print(f"EXCEPTION DETAILS  :  {e}")
         finally:
